@@ -1,0 +1,46 @@
+http:
+  middlewares:
+    cors-headers:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+          - PUT
+        accessControlAllowOriginList:
+          - "*"
+          - http://${DOMAIN_NAME}
+          - https://${DOMAIN_NAME}
+        accessControlMaxAge: 100
+        addVaryHeader: true
+
+  routers:
+    strapi-dev-router:
+      rule: "Host(`api.${DOMAIN_NAME}`)"
+      entryPoints:
+        - http
+        - https
+      service: strapi
+
+    n8n-dev-router:
+      rule: "Host(`tasks.${DOMAIN_NAME}`)"
+      entryPoints:
+        - http
+        - https
+      service: n8n
+
+  services:
+    vue:
+      loadBalancer:
+        servers:
+          - url: http://vue:8080
+
+    strapi:
+      loadBalancer:
+        servers:
+          - url: http://restapi:1337
+
+    n8n:
+      loadBalancer:
+        servers:
+          - url: http://n8n:5678
