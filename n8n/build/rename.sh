@@ -1,5 +1,5 @@
 #!/bin/sh
 
 for f in *.tgz; do
-mv -- "$f" "shift-master-n8n.tgz"
+mv -- "$f" "renamed.tgz" #adjust in package.json
 done

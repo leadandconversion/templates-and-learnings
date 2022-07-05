@@ -9,7 +9,7 @@ api:
 entryPoints:
   http:
     address: ":80"
-    #http:
+    #http:      #http -> https
     #redirections:
     #entryPoint:
     #to: https

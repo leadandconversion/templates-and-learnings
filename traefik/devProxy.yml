@@ -1,6 +1,6 @@
 http:
   middlewares:
-    cors-headers:
+    cors-headers: #not fully working
       headers:
         accessControlAllowMethods:
           - GET
